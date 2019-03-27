@@ -1,0 +1,187 @@
+<?php require_once("includes23/new_config.php");?>
+<?php
+
+
+//if(empty($_GET['id'])){
+//  redirect("photos.php");
+//}else {
+
+//
+//  $photo = Photo::find_by_id($_GET['id']);
+$user = new User();
+
+if(isset($_POST['submit'])) {
+
+
+    
+$user->username = $_POST['username'];
+$user->password = $_POST['password'];
+$user->first_name = $_POST['firstname'];
+$user->last_name =  $_POST['lastname'];
+    
+$user->set_file($_FILES['user_image']) ; 
+$user->save_user_and_image ();  
+  
+$user->properties();
+$user->clean_properties();
+$user->create();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Add User</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/blog-home.css" rel="stylesheet">
+
+
+  <style>
+    .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+    }
+    .admin-photo-thumbnail {
+  width: 200px;
+  border-radius: 5px;
+  
+}
+  </style>
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+
+  <?php  include "includes23/top_navigation.php" ?>
+   
+   
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+          <h1 class="my-4">Add User
+            <small>managin user</small>
+          </h1>
+
+   
+   
+   
+   
+
+  
+      
+        <form enctype="multipart/form-data"  action="" method="post">
+          
+          
+          <div class="col-md-6 col-md-offset-3"></div>
+          
+          
+          <input type="file" name="user_image"> <br> <br>
+          
+          
+          <div class="form-group">
+           <label for="username">Username</label>
+            <input name="username" type="text" class="form-control" >
+          </div>
+          
+         <div class="form-group">
+           <label for="password">Password</label>
+            <input name="password" type="password" class="form-control" >
+          </div>
+         
+         <div class="form-group">
+           <label for="firstname">First Name</label>
+            <input name="firstname" type="text" class="form-control" >
+          </div>
+         
+          
+         
+          <div class="form-group">
+           <label for="lastname">Last Name</label>
+            <input name="lastname" type="text" class="form-control" >
+          </div>
+          
+          
+         
+          
+          <input name="submit" type="submit" class="btn btn-primary" >
+          
+        </form>
+        
+   
+
+        
+
+       
+       
+       
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Search Widget -->
+          <?php include("includes23/search_widget.php"); ?>
+
+        
+          
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark footer">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
